@@ -17,11 +17,11 @@ class isAdmin
      */
     public function handle(Request $request, Closure $next)
     {
+       
         if(Auth::user() && Auth::user()->role == '1'){
             return redirect()->intended(app()->getLocale().'/admin');
         }else{
             return redirect()->intended(app()->getLocale().'/home');
-
         }
         return $next($request);
     }

@@ -1,7 +1,12 @@
 <?php
 
+use App\Models\Advertisement;
+use App\Models\Category;
+use App\Models\SubCategory;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +24,17 @@ Route::redirect('/', '/fr');
 //grouping all the route with the language as prefix
 Route::group(['prefix' => '{language}','where' => ['language' => '[a-zA-Z]{2}']], function () {
 
-   Route::get('/', [App\Http\Controllers\HomeController::class ,'index'])->name('index');
+
+
+   // Route::get('/', function(){
+   
+   //    $randCat = Category::all()->random()->id;      
+   //    $subCats = SubCategory::where('category_id', $randCat)->get()->random()->id;
+   //    echo "Category ID: ".$randCat. " "."Sub Category ID: ".$subCats;
+
+   // });
+
+  Route::get('/', [App\Http\Controllers\HomeController::class ,'index'])->name('index');
    Route::post('/', [App\Http\Controllers\HomeController::class ,'test'])->name('test');
    Route::get('/categories', [App\Http\Controllers\CategoryController::class ,'index'])->name('index.categories');
    Route::get('/category/{slug}', [App\Http\Controllers\CategoryController::class ,'showByCategory'])->name('showByCategory');
